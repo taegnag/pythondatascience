@@ -217,7 +217,7 @@ class Player: # Class for practical matters considering the user and Eve.
     def __init__(self, name, isTurn, screens, turnNum):
         self.name = name
         self.piece = None
-        self.boardpos = 18
+        self.boardpos = 0
         self.timeMoving = 0
         self.pieceSelected = False
         self.pieceConfirmed = False
@@ -1245,7 +1245,7 @@ while not (winner==Eve or winner==user):
                     throw = rollDice(die)
                     buttonActions[0] = True
                     # roll = throw[0].value + throw[1].value
-                    roll = 9
+                    roll = 4
             
                     for square in squares:
                         if type(square) == Property:
@@ -1392,7 +1392,7 @@ while not (winner==Eve or winner==user):
                 if alert.heading == 'Build house?':
                     for prop in properties:
                         if alert.body.__contains__(prop.name):
-                            if prop.boardpos == user.boardpos and squares[prop.boardpos].owner == user:
+                            if prop.boardpos == user.boardpos and squares[prop.boardpos].owner == user and prop.colour < 8:
                                 if user.turnNum == 0 and prop.houses == 0:
                                     prop.houses += 1
                                     user.money -= prop.getCostOfHouse()
